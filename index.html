@@ -5,29 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
     <title>Adivinha</title>
 </head>
+
 <body class="bg-red-700 h-screen flex justify-center items-center">
 
-    <div class="bg-white w-130 rounded p-4 ">
-       <div class="flex">
-            <h1 class="text-[48px] font-semibold">Em que número
-                <span class="text-orange-500">Bia</span> está pensando?</h1>
-        <img id="bia" src="./assets/biaPensa.png" alt="Bia ">
+    <div class="bg-white w-[500px] rounded-[10px] p-8 shadow-xl">
+        <div class="flex justify-between items-start">
+            <h1 class="text-[32px] font-black leading-none">Em que número<br><span class="text-orange-500">Bia</span>
+                está<br>pensando?</h1>
+            <img id="bia" src="./assets/biaPensa.png" alt="bia" class="w-[180px] h-[180px] object-contain">
         </div>
-        <input onchange="receberPalpite(event.target)" 
-        type="text" class="w-15 h-15 border-2 border-slate-300 focus:border-red-700 rounded m-auto my-4 text-center block text-lg">
 
-        <h6 class="font-bold text-center">Seus Palpites</h6>
-        <h2 id="palpites" class="text-center text-lg text-amber-500 font-bold"></h2>
+        <div id="areaJogo" class="flex flex-col items-center">
+            <input id="campo" onchange="receberPalpite(this)" type="text" inputmode="numeric" maxlength="3"
+                class="w-12 h-12 border-2 border-slate-300 focus:border-red-700 rounded m-auto my-4 text-center block text-lg outline-none">
+        </div>
+
+        <!-- MENSAGEM QUANDO ACERTA - começa escondida -->
+        <p id="msgAcertou" class="hidden text-center font-bold text-[13px] mt-4">
+            Parabéns o número é: <span id="numeroCertoAcertou" class="text-amber-500"></span>
+        </p>
+
+        <!-- MENSAGEM QUANDO ERRA - começa escondida -->
+        <div id="msgErrou" class="hidden flex flex-col items-center mt-4">
+            <p class="font-bold text-[13px]">Você não acertou, o número era: <span id="numeroCertoErrou"
+                    class="text-amber-500">38</span></p>
+            <button onclick="resetarJogo()"
+                class="bg-red-600 text-white text-[12px] font-bold px-4 py-1 rounded mt-2">Tentar novamente</button>
+        </div>
+
+        <h6 class="font-bold text-center mt-4 text-[13px]">Seus Palpites</h6>
+        <h2 id="palpites" class="text-center text-[13px] text-amber-500 font-bold min-h-[20px]"></h2>
+
+        <button id="btnJogarDeNovo" onclick="resetarJogo()"
+            class="hidden bg-red-600 text-white text-[12px] font-bold px-4 py-1 rounded mx-auto block mt-3">Tentar
+            novamente</button>
     </div>
 
-    <script src="index.js"></script>
-
+    <script src="./index.js"></script>
 </body>
-</html>
-        
-        
-        
 
+</html>
